@@ -1,0 +1,5 @@
+query FILMS_QUERY {
+  allFilms {
+    title
+  }
+}

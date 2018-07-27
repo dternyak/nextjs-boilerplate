@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "ordered-imports": false,
+    "jsx-boolean-value": false,
+    "member-access": false,
+    "object-literal-sort-keys": false,
+    "interface-name": [true, "never-prefix"],
+    "curly": [true, "ignore-same-line"]
+  }
+}
