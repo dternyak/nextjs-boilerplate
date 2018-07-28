@@ -21,7 +21,7 @@ Batteries included nextjs boilerplate, with redux, sagas, thunks, graphql, and a
 Clone the repo
 
 ```
-git clone git@github.com:ProvablyFair/nextjs-boost.git
+git clone git@github.com:dternyak/react-base.git
 ```
 
 Install it and run:
