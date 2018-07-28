@@ -1,12 +1,12 @@
 import React from 'react';
-import Link from 'next/link';
+import Link, { LinkState } from 'next/link';
 import styled from 'styled-components';
 
 const MyButton = styled.button``;
 
 const MyLink = styled.a`
   color: white;
-  
+
   &:focus {
     color: black !important;
   }
@@ -14,16 +14,20 @@ const MyLink = styled.a`
   ${MyButton}:hover & {
     color: black;
   }
-  
 `;
 
-const ButtonLink = ({ name, href }: any) => {
+interface ButtonLinkProps {
+  href: LinkState['href'];
+  name: string;
+}
+
+const ButtonLink = ({ name, href }: ButtonLinkProps) => {
   return (
     <Link prefetch href={href}>
       <MyButton className="ui inverted button">
-          <MyLink>{name}</MyLink>
+        <MyLink>{name}</MyLink>
       </MyButton>
-  </Link>
+    </Link>
   );
 };
 

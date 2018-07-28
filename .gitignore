@@ -4,3 +4,5 @@ node_modules
 build
 out
 src/build
+dist
+yarn-error.log

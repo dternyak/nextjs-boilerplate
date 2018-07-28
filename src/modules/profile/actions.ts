@@ -1,5 +1,5 @@
 import types from './types';
-import { data_about_user } from '~/api/api';
+import { data_about_user } from 'api/api';
 import { Dispatch } from 'redux';
 
 export function profileUser() {

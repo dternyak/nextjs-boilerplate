@@ -8,21 +8,24 @@ import {
 import Trend from 'ant-design-pro/lib/Trend';
 import NumberInfo from 'ant-design-pro/lib/NumberInfo';
 import 'ant-design-pro/dist/ant-design-pro.css'; // Import whole style
-
 import { Row, Col, Icon, Tooltip } from 'antd';
 import numeral from 'numeral';
 import moment from 'moment';
 import React from 'react';
+import { IMiniAreaProps } from 'ant-design-pro/lib/Charts/MiniArea';
 
-const visitData = [];
+const visitData: IMiniAreaProps['data'] = [];
+
 const beginDay = new Date().getTime();
 for (let i = 0; i < 20; i += 1) {
-  visitData.push({
+  const data: IMiniAreaProps['data'][number] = {
     x: moment(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format(
       'YYYY-MM-DD'
     ),
     y: Math.floor(Math.random() * 100) + 10
-  });
+  };
+
+  visitData.push(data);
 }
 
 export default class Charts extends React.Component {
