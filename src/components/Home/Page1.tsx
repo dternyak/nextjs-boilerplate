@@ -81,15 +81,22 @@ const pointPos = [
   { x: 50, y: 50, opacity: 0.2 }
 ];
 
-class Page1 extends React.PureComponent {
+interface StateProps {
+  isMobile: boolean;
+}
 
-  constructor(props) {
+interface State {
+  hoverNum: number | null;
+}
+
+class Page1 extends React.PureComponent<StateProps, State> {
+  constructor(props: StateProps) {
     super(props);
     this.state = {
       hoverNum: null
     };
   }
-  onMouseOver = i => {
+  onMouseOver = (i: any) => {
     this.setState({
       hoverNum: i
     });
@@ -99,7 +106,7 @@ class Page1 extends React.PureComponent {
       hoverNum: null
     });
   };
-  getEnter = e => {
+  getEnter = (e: any) => {
     const i = e.index;
     const r = Math.random() * 2 - 1;
     const y = Math.random() * 10 + 5;
@@ -122,7 +129,7 @@ class Page1 extends React.PureComponent {
   };
   render() {
     const { hoverNum } = this.state;
-    let children = [[], [], []];
+    const children: Array<any[any]> = [[], [], []];
     featuresCN.forEach((item, i) => {
       const isHover = hoverNum === i;
       const pointChild = [
@@ -147,9 +154,7 @@ class Page1 extends React.PureComponent {
         <li key={i.toString()}>
           <div
             className="page1-box"
-            onMouseEnter={() => {
-              this.onMouseOver(i);
-            }}
+            onMouseEnter={this.onMouseOver}
             onMouseLeave={this.onMouseOut}
           >
             <TweenOneGroup
@@ -188,7 +193,7 @@ class Page1 extends React.PureComponent {
       children[Math.floor(i / 3)].push(child);
     });
 
-    children = children.map((item, i) => (
+    const queanim = children.map((item, i) => (
       <QueueAnim
         className="page1-box-wrapper"
         key={i.toString()}
@@ -222,7 +227,7 @@ class Page1 extends React.PureComponent {
           <div className="title-line-wrapper page1-line">
             <div className="title-line" />
           </div>
-          <OverPack>{children}</OverPack>
+          <OverPack>{queanim}</OverPack>
         </div>
       </div>
     );

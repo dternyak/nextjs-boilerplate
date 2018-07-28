@@ -1,10 +1,12 @@
 import { Form, Icon, Input, Button } from 'antd';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import { bindActionCreators, Dispatch } from 'redux';
+
 import { authActions } from 'modules/auth/index';
 import React from 'react';
 import { FormComponentProps, FormProps } from 'antd/lib/form';
+import { AppState } from '../store/reducers';
 
 const FormItem = Form.Item;
 
@@ -12,7 +14,16 @@ function hasErrors(fieldsError: any) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-type Props = FormComponentProps;
+interface StateProps {
+  isAuthenticating: AppState['auth']['isAuthenticating'];
+  statusText: AppState['auth']['statusText'];
+}
+
+interface DispatchProps {
+  loginUser: authActions.TLoginUser;
+}
+
+type Props = FormComponentProps & StateProps & DispatchProps;
 
 class HorizontalLoginForm extends React.Component<Props> {
   constructor(props: Props) {
@@ -34,7 +45,6 @@ class HorizontalLoginForm extends React.Component<Props> {
         this.props.loginUser(
           values.userName,
           values.password,
-          this.state.redirectTo
         );
       }
     });
@@ -98,16 +108,14 @@ class HorizontalLoginForm extends React.Component<Props> {
 
 const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
 
-function mapStateToProps(state: {
-  auth: { isAuthenticating: any; statusText: any };
-}) {
+function mapStateToProps(state: AppState) {
   return {
     isAuthenticating: state.auth.isAuthenticating,
     statusText: state.auth.statusText
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return bindActionCreators(authActions, dispatch);
 }
 

@@ -23,9 +23,9 @@ function Page2() {
               <div>$ cd ant-design-pro</div>
               <div>$ npm install</div>
               <div>
-                $ npm start
+                <p>$ npm start</p>
                 <span className="home-code-comment">
-                  // 打开浏览器访问 http://localhost:8000
+                  打开浏览器访问 http://localhost:8000
                 </span>
               </div>
             </div>

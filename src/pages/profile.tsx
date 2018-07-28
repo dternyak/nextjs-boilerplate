@@ -5,13 +5,18 @@ import { profileActions } from 'modules/profile';
 import { bindActionCreators, Dispatch } from 'redux';
 import AntWrap from 'components/AntWrap';
 import { Card } from 'antd';
+import { AppState } from 'store/reducers';
 
-interface Props {
-  error: boolean;
-  dispatch: Dispatch;
-  lastUpdate: Date;
-  profileUser: any;
+interface StateProps {
+  email: AppState['profile']['email'];
+  id: AppState['profile']['id'];
 }
+
+interface DispatchProps {
+  profileUser: profileActions.TProfileUser;
+}
+
+type Props = StateProps & DispatchProps;
 
 class Profile extends Component<Props> {
   componentDidMount() {
@@ -34,14 +39,14 @@ class Profile extends Component<Props> {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: AppState) {
   return {
     email: state.profile.email,
     id: state.profile.id
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return bindActionCreators(profileActions, dispatch);
 }
 

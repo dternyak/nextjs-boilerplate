@@ -24,6 +24,10 @@ export const INITIAL_STATE: AuthState = {
   registerStatusText: null
 };
 
+interface JWT {
+  email: string
+}
+
 export default (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case types.LOGIN_USER_PENDING:
@@ -37,7 +41,7 @@ export default (state = INITIAL_STATE, action: any) => {
         ...state,
         isAuthenticating: false,
         token: action.payload.token,
-        userName: jwtDecode(action.payload.data.token).email,
+        userName: (jwtDecode(action.payload.data.token) as JWT).email,
         statusText: action.payload.statusText
       };
 
@@ -67,7 +71,7 @@ export default (state = INITIAL_STATE, action: any) => {
         isAuthenticated: true,
         isRegistering: false,
         token: action.payload.token,
-        userName: jwtDecode(action.payload.token).email,
+        userName: (jwtDecode(action.payload.data.token) as JWT).email,
         registerStatusText: action.payload.statusText
       };
 

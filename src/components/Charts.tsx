@@ -18,6 +18,7 @@ const visitData: IMiniAreaProps['data'] = [];
 
 const beginDay = new Date().getTime();
 for (let i = 0; i < 20; i += 1) {
+  // @ts-ignore
   const data: IMiniAreaProps['data'][number] = {
     x: moment(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format(
       'YYYY-MM-DD'

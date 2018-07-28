@@ -1,20 +1,26 @@
 import React from 'react';
 import { Row, Col, Icon, Menu, Button, Popover } from 'antd';
+import { MenuMode } from 'antd/lib/menu';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import Router from 'next/router';
 
-import { enquireScreen } from 'enquire-js';
+import { isMobile } from 'is-mobile';
 import NProgress from 'nprogress';
 
 const LOGO_URL =
   'https://gw.alipayobjects.com/zos/rmsportal/gVAKqIsuJCepKNbgbSwE.svg';
 
-class Header extends React.Component {
+
+interface OwnState {
+  menuVisible: boolean;
+  menuMode: MenuMode
+}
+
+class Header extends React.Component<{}, OwnState> {
   state = {
     menuVisible: false,
-    menuMode: 'horizontal',
-    routerChangeTimeout: null
+    menuMode: 'horizontal' as MenuMode
   };
 
   constructor(props: any) {
@@ -22,14 +28,11 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    enquireScreen(b => {
-      this.setState({ menuMode: b ? 'inline' : 'horizontal' });
-    });
+    this.setState({ menuMode: isMobile() ? 'inline' : 'horizontal' });
 
     NProgress.configure({ easing: 'ease', speed: 500 });
 
-    // TODO only start nprogress if onRouteChangeComplete has not fired within 1s
-    Router.onRouteChangeStart = url => {
+    Router.onRouteChangeStart = (_: string) => {
       NProgress.start();
     };
 
@@ -81,7 +84,7 @@ class Header extends React.Component {
             trigger="click"
             visible={menuVisible}
             arrowPointAtCenter
-            onVisibleChange={this.onMenuVisibleChange}
+            // onVisibleChange={this.onMenuVisibleChange}
           >
             <Icon
               className="nav-phone-icon"

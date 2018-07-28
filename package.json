@@ -20,7 +20,6 @@
     "antd": "^3.7.1",
     "apollo-boost": "^0.1.7",
     "axios": "^0.18.0",
-    "enquire-js": "^0.2.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "is-mobile": "^1.0.0",

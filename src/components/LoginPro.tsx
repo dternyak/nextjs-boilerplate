@@ -1,15 +1,27 @@
 import Login, { LoginProps } from 'ant-design-pro/lib/Login';
 import { Alert, Checkbox } from 'antd';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { authActions } from 'modules/auth/index';
 import React from 'react';
 import { CheckboxProps } from 'antd/lib/checkbox';
+import { AppState } from 'store/reducers';
+import { bindActionCreators, Dispatch } from 'redux';
 
 const { Tab, UserName, Password, Submit } = Login;
 
-class LoginPro extends React.Component {
+interface StateProps {
+  email: AppState['profile']['email'];
+  id: AppState['profile']['id'];
+}
+
+interface DispatchProps {
+  loginUser: authActions.TLoginUser;
+}
+
+type Props = StateProps & DispatchProps
+
+class LoginPro extends React.Component<Props> {
   state = {
     notice: '',
     type: 'tab1',
@@ -17,12 +29,8 @@ class LoginPro extends React.Component {
   };
 
   onSubmit: LoginProps['onSubmit'] = (err, values) => {
-    console.log('value collected ->', {
-      ...values,
-      autoLogin: this.state.autoLogin
-    });
     if (!err) {
-      this.props.loginUser(values.username, values.password, '/profile');
+      this.props.loginUser(values.username, values.password);
     } else {
       this.setState({
         notice: 'This combination of username and password is incorrect!'
@@ -90,14 +98,14 @@ class LoginPro extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: AppState) {
   return {
     isAuthenticating: state.auth.isAuthenticating,
     statusText: state.auth.statusText
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return bindActionCreators(authActions, dispatch);
 }
 

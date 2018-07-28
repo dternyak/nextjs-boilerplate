@@ -5,13 +5,13 @@ import Header from './Home/Header';
 import Footer from './Home/Footer';
 
 interface Props {
-  children: React.ReactChildren;
-  withBreadcrumb: boolean;
+  withBreadcrumb?: boolean | null;
 }
 
 const { Content } = Layout;
 
 class AntWrap extends React.Component<Props> {
+
   render() {
     const { children, withBreadcrumb } = this.props;
     return (

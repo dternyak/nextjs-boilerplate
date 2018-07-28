@@ -64,6 +64,7 @@ export function registerUser(email: string, password: string) {
   };
 }
 
+export type TLoginUser = typeof loginUser;
 export function loginUser(email: string, password: string) {
   return async (dispatch: Dispatch<any>) => {
     try {

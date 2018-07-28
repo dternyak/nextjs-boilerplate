@@ -57,6 +57,7 @@ class Example extends Component<Props, any> {
 
     return (
       <AntWrap>
+
         <h2>Redux Sagas:</h2>
         <Clock>{format(new Date(this.props.lastUpdate))}</Clock>
 
@@ -71,6 +72,7 @@ class Example extends Component<Props, any> {
             ))}
           </>
         )}
+
       </AntWrap>
     );
   }
