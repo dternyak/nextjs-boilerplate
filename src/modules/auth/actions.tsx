@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
-import Router from 'next/router'
+import Router from 'next/router';
 
 import types from './types';
-import { getTokenAPI, createUserAPI } from '~/api/api';
+import { getTokenAPI, createUserAPI } from 'api/api';
 
 export function loginUserRejected(status: number, statusText: string) {
   return {
@@ -27,16 +27,10 @@ export function logoutUser() {
 }
 
 export function logoutAndRedirect() {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(logoutUser());
   };
 }
-
-// export function redirectToRoute(route) {
-//   return () => {
-//     browserHistory.push(route);
-//   };
-// }
 
 export function registerUserSuccess(token: string) {
   return {
@@ -79,8 +73,8 @@ export function loginUser(email: string, password: string) {
           const response = await getTokenAPI(email, password);
           localStorage.setItem('token', response.data.token);
           Router.push({
-            pathname: '/profile',
-          })
+            pathname: '/profile'
+          });
           return response;
         }
       });

@@ -1,18 +1,19 @@
 import React from 'react';
-import { withRouter } from 'next/router';
 import { Menu } from 'antd';
 import Link from 'next/link';
 
+interface MenuLinkProps {
+  href: string;
+  name: string;
+}
 
-const MenuLink = ({ href, name }: any) => {
+const MenuLink = ({ href, name }: MenuLinkProps) => {
   return (
-      <Menu.Item key={href}>
-        <Link href={href}>
-
+    <Menu.Item key={href}>
+      <Link href={href}>
         <a>{name}</a>
-        </Link>
-      </Menu.Item>
-
+      </Link>
+    </Menu.Item>
   );
 };
 

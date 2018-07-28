@@ -1,5 +1,5 @@
 import React from 'react';
-import createApolloClient from 'src/services/apollo-client-service';
+import createApolloClient from 'services/apollo-client-service';
 import Head from 'next/head';
 import { getDataFromTree } from 'react-apollo';
 

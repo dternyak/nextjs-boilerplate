@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { compose } from 'recompose';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { clockActions } from '../modules/clock';
-import AntWrap from '~/components/AntWrap';
+import AntWrap from 'components/AntWrap';
+import { Dispatch } from 'redux';
 
 interface Props {
   error: boolean;

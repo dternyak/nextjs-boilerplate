@@ -10,9 +10,16 @@ const typescript = require('@zeit/next-typescript');
 const nextConfig = {
   distDir: 'build',
   webpack: (config, options) => {
+    config.context = `${__dirname}/src`;
+
     // Do not run type checking twice:
     if (options.isServer) {
-      config.plugins.push(new ForkTsCheckerWebpackPlugin());
+      config.plugins.push(
+        new ForkTsCheckerWebpackPlugin({
+          tsconfig: '../tsconfig.json',
+          tslint: '../tslint.json'
+        })
+      );
     }
 
     if (process.env.ANALYZE) {

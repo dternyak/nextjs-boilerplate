@@ -1,9 +1,10 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import styled, { ThemeProvider, injectGlobal } from 'styled-components';
+import { ThemeProvider, injectGlobal } from 'styled-components';
 import theme from '../components/theme';
 
+// tslint:disable-next-line:no-unused-expression
 injectGlobal`
   @font-face {
     font-family: 'Lato', sans-serif !important;

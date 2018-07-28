@@ -1,11 +1,13 @@
-import Login from 'ant-design-pro/lib/Login';
+import Login, { LoginProps } from 'ant-design-pro/lib/Login';
 import { Alert, Checkbox } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { authActions } from '~/modules/auth/index';
+import { authActions } from 'modules/auth/index';
+import React from 'react';
+import { CheckboxProps } from 'antd/lib/checkbox';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const { Tab, UserName, Password, Submit } = Login;
 
 class LoginPro extends React.Component {
   state = {
@@ -13,31 +15,33 @@ class LoginPro extends React.Component {
     type: 'tab1',
     autoLogin: true
   };
-  onSubmit = (err, values) => {
+
+  onSubmit: LoginProps['onSubmit'] = (err, values) => {
     console.log('value collected ->', {
       ...values,
       autoLogin: this.state.autoLogin
     });
     if (!err) {
-      this.props.loginUser(
-        values.username,
-        values.password,
-        "/profile"
-      );
+      this.props.loginUser(values.username, values.password, '/profile');
     } else {
-      this.setState({notice: "This combination of username and password is incorrect!"})
+      this.setState({
+        notice: 'This combination of username and password is incorrect!'
+      });
     }
   };
-  onTabChange = key => {
+
+  onTabChange: LoginProps['onTabChange'] = key => {
     this.setState({
       type: key
     });
   };
-  changeAutoLogin = e => {
+
+  changeAutoLogin: CheckboxProps['onChange'] = e => {
     this.setState({
       autoLogin: e.target.checked
     });
   };
+
   render() {
     return (
       <Login

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect, Dispatch } from 'react-redux';
-import AntWrap from '~/components/AntWrap';
-import LoginPro from '~/components/LoginPro';
+import AntWrap from 'components/AntWrap';
+import LoginPro from 'components/LoginPro';
 import { Row, Col } from 'antd';
+import { Dispatch } from 'redux';
 
 interface Props {
   error: boolean;
@@ -16,7 +16,7 @@ class Login extends Component<Props, any> {
     return (
       <AntWrap>
         <Row gutter={16}>
-          <Col md={{span: 12, offset: 6}} sm={16}>
+          <Col md={{ span: 12, offset: 6 }} sm={16}>
             <LoginPro />
           </Col>
         </Row>

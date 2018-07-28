@@ -1,13 +1,17 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-
-const { Content } = Layout;
+import { Layout, Breadcrumb } from 'antd';
 import BasicHead from './BasicHead';
-
 import Header from './Home/Header';
 import Footer from './Home/Footer';
 
-class AntWrap extends React.Component<any, any> {
+interface Props {
+  children: React.ReactChildren;
+  withBreadcrumb: boolean;
+}
+
+const { Content } = Layout;
+
+class AntWrap extends React.Component<Props> {
   render() {
     const { children, withBreadcrumb } = this.props;
     return (
@@ -21,7 +25,14 @@ class AntWrap extends React.Component<any, any> {
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
           )}
-          <div style={{ background: '#fff', paddingTop: 50, paddingBottom: 50, minHeight: 280 }}>
+          <div
+            style={{
+              background: '#fff',
+              paddingTop: 50,
+              paddingBottom: 50,
+              minHeight: 280
+            }}
+          >
             {children}
           </div>
         </Content>

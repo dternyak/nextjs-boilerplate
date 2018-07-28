@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import clock, { ClockState } from '~/modules/clock';
-import auth, { AuthState } from '~/modules/auth';
-import profile, { ProfileState } from '~/modules/profile';
+import clock, { ClockState } from 'modules/clock';
+import auth, { AuthState } from 'modules/auth';
+import profile, { ProfileState } from 'modules/profile';
 
 export interface AppState {
   clock: ClockState;

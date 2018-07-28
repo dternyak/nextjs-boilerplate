@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-import { connect, Dispatch } from 'react-redux';
-import { profileActions } from '~/modules/profile';
-import { bindActionCreators } from 'redux';
-import AntWrap from '~/components/AntWrap';
+import { connect } from 'react-redux';
+import { profileActions } from 'modules/profile';
+import { bindActionCreators, Dispatch } from 'redux';
+import AntWrap from 'components/AntWrap';
 import { Card } from 'antd';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
   profileUser: any;
 }
 
-class Profile extends Component<Props, any> {
+class Profile extends Component<Props> {
   componentDidMount() {
     this.props.profileUser();
   }

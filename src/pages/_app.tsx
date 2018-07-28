@@ -1,12 +1,12 @@
 import App, { Container } from 'next/app';
 import React from 'react';
-import withApolloClient from '~/lib/with-apollo-client';
+import withApolloClient from 'lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import createStore from '~/store/configure';
+import createStore from 'store/configure';
 
 interface Props {
   Component: any;

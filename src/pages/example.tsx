@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import FILMS_QUERY from '~/graphql/films.graphql';
+import FILMS_QUERY from 'graphql/films.graphql';
 import { graphql } from 'react-apollo';
 import styled from 'styled-components';
 import { compose, withProps } from 'recompose';
-import { connect, Dispatch } from 'react-redux';
-import { clockActions } from '~/modules/clock';
-import AntWrap from '~/components/AntWrap';
-
+import { connect } from 'react-redux';
+import { clockActions } from 'modules/clock';
+import AntWrap from 'components/AntWrap';
+import { Dispatch } from 'redux';
 
 interface Film {
   title: string;
@@ -64,12 +64,11 @@ class Example extends Component<Props, any> {
           <h1>loading...</h1>
         ) : (
           <>
-          <h2>Movie List through GraphQL: </h2>
+            <h2>Movie List through GraphQL: </h2>
 
             {films.map((film, index: number) => (
               <div key={index}>{film.title}</div>
-            ))
-            }
+            ))}
           </>
         )}
       </AntWrap>

@@ -2,16 +2,20 @@ import { Form, Icon, Input, Button } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { authActions } from '~/modules/auth/index';
+import { authActions } from 'modules/auth/index';
+import React from 'react';
+import { FormComponentProps, FormProps } from 'antd/lib/form';
 
 const FormItem = Form.Item;
 
-function hasErrors(fieldsError) {
+function hasErrors(fieldsError: any) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class HorizontalLoginForm extends React.Component {
-  constructor(props) {
+type Props = FormComponentProps;
+
+class HorizontalLoginForm extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
     const redirectRoute = '/login';
     this.state = {
@@ -23,7 +27,7 @@ class HorizontalLoginForm extends React.Component {
     this.props.form.validateFields();
   }
 
-  handleSubmit = e => {
+  handleSubmit: FormProps['onSubmit'] = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -52,7 +56,7 @@ class HorizontalLoginForm extends React.Component {
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>
         <FormItem
-          validateStatus={userNameError ? 'error' : ''}
+          validateStatus={userNameError ? 'error' : 'validating'}
           help={userNameError || ''}
         >
           {getFieldDecorator('userName', {
@@ -65,7 +69,7 @@ class HorizontalLoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem
-          validateStatus={passwordError ? 'error' : ''}
+          validateStatus={passwordError ? 'error' : 'validating'}
           help={passwordError || ''}
         >
           {getFieldDecorator('password', {
@@ -94,7 +98,9 @@ class HorizontalLoginForm extends React.Component {
 
 const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
 
-function mapStateToProps(state) {
+function mapStateToProps(state: {
+  auth: { isAuthenticating: any; statusText: any };
+}) {
   return {
     isAuthenticating: state.auth.isAuthenticating,
     statusText: state.auth.statusText
