@@ -11,7 +11,7 @@
     "dev": "node server.js",
     "export": "next build ./src && next export ./src",
     "postexport": "node move.js",
-    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "lint": "tslint --project ./tsconfig.json --config ./tslint.json -e \"**/build/**\"",
     "start": "NODE_ENV=production node server.js",
     "tsc": "tsc"
   },

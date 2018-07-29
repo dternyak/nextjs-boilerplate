@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Icon, Menu, Button, Popover } from 'antd';
 import { MenuMode } from 'antd/lib/menu';
 import Link from 'next/link';
-import { withRouter } from 'next/router';
+import { SingletonRouter, withRouter } from 'next/router';
 import Router from 'next/router';
 
 import { isMobile } from 'is-mobile';
@@ -11,35 +11,31 @@ import NProgress from 'nprogress';
 const LOGO_URL =
   'https://gw.alipayobjects.com/zos/rmsportal/gVAKqIsuJCepKNbgbSwE.svg';
 
+interface RouteProps {
+  router?: SingletonRouter;
+}
 
 interface OwnState {
   menuVisible: boolean;
-  menuMode: MenuMode
+  menuMode: MenuMode;
 }
 
-class Header extends React.Component<{}, OwnState> {
+class Header extends React.Component<RouteProps, OwnState> {
   state = {
     menuVisible: false,
     menuMode: 'horizontal' as MenuMode
   };
 
-  constructor(props: any) {
+  constructor(props: RouteProps) {
     super(props);
   }
 
   componentDidMount() {
     this.setState({ menuMode: isMobile() ? 'inline' : 'horizontal' });
-
     NProgress.configure({ easing: 'ease', speed: 500 });
-
-    Router.onRouteChangeStart = (_: string) => {
-      NProgress.start();
-    };
-
-    Router.onRouteChangeComplete = () => {
-      NProgress.done();
-    };
-    Router.onRouteChangeError = () => NProgress.done();
+    Router.events.on('routeChangeStart', () => NProgress.start());
+    Router.events.on('routeChangeComplete', () => NProgress.done());
+    Router.events.on('routeChangeError', () => NProgress.done());
   }
 
   handleShowMenu = () => {
@@ -120,4 +116,5 @@ class Header extends React.Component<{}, OwnState> {
   }
 }
 
+// @ts-ignore
 export default withRouter(Header);
