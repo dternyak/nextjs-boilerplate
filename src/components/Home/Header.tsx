@@ -33,9 +33,14 @@ class Header extends React.Component<RouteProps, OwnState> {
   componentDidMount() {
     this.setState({ menuMode: isMobile() ? 'inline' : 'horizontal' });
     NProgress.configure({ easing: 'ease', speed: 500 });
-    Router.events.on('routeChangeStart', () => NProgress.start());
-    Router.events.on('routeChangeComplete', () => NProgress.done());
-    Router.events.on('routeChangeError', () => NProgress.done());
+    // nextjs has incorrect type definitions. They expect Router.events.on('routeChangeStart')
+    // (https://github.com/zeit/next.js#router-events) ... but `.events` is undefined at runtime
+    // @ts-ignore
+    Router.onRouteChangeStart = () => NProgress.start();
+    // @ts-ignore
+    Router.onRouteChangeComplete = () => NProgress.done();
+    // @ts-ignore
+    Router.onRouteChangeError = () => NProgress.done();
   }
 
   handleShowMenu = () => {

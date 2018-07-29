@@ -5,12 +5,12 @@ import { Button } from 'antd';
 import BannerSVGAnim from './component/BannerSVGAnim';
 
 interface Props {
-  isMobile: boolean
+  isMobile: boolean;
 }
 
 export default class Banner extends React.Component<Props> {
   render() {
-    const {props} = this
+    const { props } = this;
     return (
       <div className="banner-wrapper">
         {props.isMobile && (
@@ -24,7 +24,10 @@ export default class Banner extends React.Component<Props> {
             </div>
           </TweenOne>
         )}
-        <QueueAnim className="banner-title-wrapper" type={props.isMobile ? 'bottom' : 'right'}>
+        <QueueAnim
+          className="banner-title-wrapper"
+          type={props.isMobile ? 'bottom' : 'right'}
+        >
           <div key="line" className="title-line-wrapper">
             <div
               className="title-line"
@@ -32,19 +35,18 @@ export default class Banner extends React.Component<Props> {
             />
           </div>
           <h1 key="h1">ANT DESIGN PRO</h1>
-          <p key="content">
-            Build something today
-          </p>
+          <p key="content">Build something today</p>
           <div key="button" className="button-wrapper">
-            <a href="http://preview.pro.ant.design" target="_blank" rel="noopener noreferrer">
-              <Button type="primary">
-                Primary
-              </Button>
+            <a
+              href="http://preview.pro.ant.design"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button type="primary">Primary</Button>
             </a>
             <Button style={{ margin: '0 16px' }} type="primary" ghost>
               Secondary
             </Button>
-
           </div>
         </QueueAnim>
         {!props.isMobile && (
@@ -56,6 +58,3 @@ export default class Banner extends React.Component<Props> {
     );
   }
 }
-
-
-
