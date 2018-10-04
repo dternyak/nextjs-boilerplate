@@ -50,7 +50,7 @@
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.3.3",
-    "typescript": "^2.9.1"
+    "typescript": "^3.1.1"
   },
   "devDependencies": {
     "@types/headroom": "^0.7.31",
